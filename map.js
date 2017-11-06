@@ -103,6 +103,8 @@ var colors = {
 showResult = function(searchResult) {
   var circleStroke = true;
   if(map.getZoom() > 10) {
+    console.log("TEST");
+
     circleStroke = false;
     //cleaning markers
     markers.forEach(marker => map.removeLayer(marker))
