@@ -103,13 +103,15 @@ var colors = {
 getCounter = function(){
   $.getJSON( "https://api.myjson.com/bins/9t913", function( data ) {
     console.log(JSON.stringify(data));
-    var metaCounters = JSON.parse(stringify(data));
-    console.log(metaCounters, "obj");
-    console.log(metaCounters.crime, "liczba");
+    var metaCounters = JSON.stringify(data);
+    console.log(metaCounters, "string");
+
+    console.log(JSON.parse(metaCounters), "obj");
+    zs
   });
 }
 
-showResult = function(searchResult) {
+showResult = function(searchResult) {zs
   var circleStroke = true;
   if(map.getZoom() > 10) {
     circleStroke = false;
