@@ -107,7 +107,6 @@ getCounter = function(){
     console.log(metaCounters, "string");
 
     console.log(JSON.parse(metaCounters), "obj");
-    zs
   });
 }
 
