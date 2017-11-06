@@ -102,15 +102,16 @@ var colors = {
 
 getCounter = function(){
   $.getJSON( "https://api.myjson.com/bins/9t913", function( data ) {
-    console.log(data);
+    console.log(JSON.stringify(data));
   });
 }
 
 showResult = function(searchResult) {
   var circleStroke = true;
-  getCounter();
+  console.log("rebuild");
   if(map.getZoom() > 10) {
     circleStroke = false;
+    getCounter();
     //cleaning markers
     markers.forEach(marker => map.removeLayer(marker))
     markers = [];
@@ -145,7 +146,6 @@ showResult = function(searchResult) {
     circles.push(circle);
   });
 }
-
 
 updateMap = function() {
   var categories = getActiveCategories();
