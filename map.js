@@ -111,6 +111,9 @@ getCounter = function(category){
 
   });
 }
+
+getCounter("crime");
+
  = function(searchResult) {
   var circleStroke = true;
   if(map.getZoom() > 10) {
@@ -148,7 +151,6 @@ getCounter = function(category){
     circle.addTo(map);
     circles.push(circle);
   });
-  getCounter("crime");
 }
 
 updateMap = function() {
