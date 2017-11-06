@@ -100,8 +100,15 @@ var colors = {
   "synagogues": "#116aec"
 }
 
+getCounter = function(){
+  $.getJSON( "https://api.myjson.com/bins/9t913", function( data ) {
+    console.log(data);
+  });
+}
+
 showResult = function(searchResult) {
   var circleStroke = true;
+  getCounter();
   if(map.getZoom() > 10) {
     circleStroke = false;
     //cleaning markers
@@ -138,6 +145,7 @@ showResult = function(searchResult) {
     circles.push(circle);
   });
 }
+
 
 updateMap = function() {
   var categories = getActiveCategories();
