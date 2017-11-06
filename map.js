@@ -100,13 +100,13 @@ var colors = {
   "synagogues": "#116aec"
 }
 
-getCounter = function(){
+getCounter = function(category){
   $.getJSON( "https://api.myjson.com/bins/9t913", function( data ) {
     console.log(JSON.stringify(data));
     var metaCounters = JSON.stringify(data);
-    console.log(metaCounters, "string");
-
-    console.log(JSON.parse(metaCounters), "obj");
+    metaCountersObj = JSON.parse(metaCounters);
+    console.log(metaCountersObj);
+    console.log(metaCountersObj.category, "string");
   });
 }
 
@@ -147,7 +147,7 @@ showResult = function(searchResult) {
     circle.addTo(map);
     circles.push(circle);
   });
-  getCounter();
+  getCounter(crime);
 }
 
 updateMap = function() {
