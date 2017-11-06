@@ -103,7 +103,7 @@ var colors = {
 getCounter = function(){
   $.getJSON( "https://api.myjson.com/bins/9t913", function( data ) {
     console.log(JSON.stringify(data));
-    var metaCounters = JSON.parse(data);
+    var metaCounters = JSON.parse(stringify(data));
     console.log(metaCounters, "obj");
     console.log(metaCounters.crime, "liczba");
   });
