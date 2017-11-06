@@ -105,16 +105,11 @@ getCounter = function(category){
     console.log(JSON.stringify(data));
     var metaCounters = JSON.stringify(data);
     metaCountersObj = JSON.parse(metaCounters);
-    console.log(metaCountersObj);
-    console.log(metaCountersObj.crime, "string");
-    console.log(metaCountersObj.category, "string");
-
+    console.log(metaCountersObj[category]);
   });
 }
 
-getCounter("crime");
-
- = function(searchResult) {
+showResult = function(searchResult) {
   var circleStroke = true;
   if(map.getZoom() > 10) {
     circleStroke = false;
