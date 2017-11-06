@@ -106,11 +106,12 @@ getCounter = function(category){
     var metaCounters = JSON.stringify(data);
     metaCountersObj = JSON.parse(metaCounters);
     console.log(metaCountersObj);
+    console.log(metaCountersObj.crime, "string");
     console.log(metaCountersObj.category, "string");
+
   });
 }
-
-showResult = function(searchResult) {
+ = function(searchResult) {
   var circleStroke = true;
   if(map.getZoom() > 10) {
     circleStroke = false;
@@ -147,7 +148,7 @@ showResult = function(searchResult) {
     circle.addTo(map);
     circles.push(circle);
   });
-  getCounter(crime);
+  getCounter("crime");
 }
 
 updateMap = function() {
