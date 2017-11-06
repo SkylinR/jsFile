@@ -110,7 +110,7 @@ getCounter = function(){
   });
 }
 
-showResult = function(searchResult) {zs
+showResult = function(searchResult) {
   var circleStroke = true;
   if(map.getZoom() > 10) {
     circleStroke = false;
