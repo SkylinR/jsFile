@@ -210,7 +210,7 @@ $(document).ready(function(){
         console.log(data, "DATA NEW");
     })
 
-    $.getJSON("https://api.wearerealitygames.com/heatmap2/search",function(data){
+    $.getJSON("https://api.wearerealitygames.com/heatmap2/search?tp=synagogues",function(data){
         console.log(data, "DATA OLD");
     })
 })
