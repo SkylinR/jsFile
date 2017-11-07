@@ -211,6 +211,7 @@ $(document).ready(function(){
     })
 
     $.getJSON("https://api.wearerealitygames.com/heatmap2/search?tp=synagogues",function(data){
+        console.log("test");
         console.log(data, "DATA OLD");
     })
 })
