@@ -193,6 +193,7 @@ map.on('moveend', event => updateMap());
 
 $( document ).ready(function() {
     console.log( "ready222!" );
+    console.log(location.hash.replace('#', '').split(',').filter(c => c != ''));
 
     $.getJSON({
         url: "https://api.wearerealitygames.com/heatmap2/search",
