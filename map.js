@@ -100,11 +100,6 @@ getSearchParams = function(categories) {
 var markers = []
 var circles = []
 
-var colors = {
-  "churches": "#f1c857",
-  "synagogues": "#116aec"
-}
-
 getCounter = function(category){
   $.getJSON( "https://api.myjson.com/bins/9t913", function( data ) {
     console.log(JSON.stringify(data));
