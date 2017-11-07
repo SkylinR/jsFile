@@ -156,9 +156,15 @@ updateMap = function() {
     $.getJSON({
       url: "https://api.wearerealitygames.com/heatmap2/search",
       data: getSearchParams(categories),
-      success: showResult
+      success: test
     });
   }
+}
+
+test = function() {
+  console.log("test");
+  console.log(data);
+  console.log(getSearchParams(categories);
 }
 
 clearMap = function() {
