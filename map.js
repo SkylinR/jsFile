@@ -156,15 +156,9 @@ updateMap = function() {
     $.getJSON({
       url: "https://api.wearerealitygames.com/heatmap2/search",
       data: getSearchParams(categories),
-      success: test
+      success: showResult
     });
   }
-}
-
-test = function() {
-  console.log("test");
-  console.log(data);
-  console.log(getSearchParams(categories));
 }
 
 clearMap = function() {
@@ -196,3 +190,15 @@ $('a').click(function() {
 window.onhashchange = updateMap;
 map.on('moveend', event => updateMap());
 //**MAP CODE ENDS HERE**//
+
+$( document ).ready(function() {
+    console.log( "ready222!" );
+
+    $.getJSON({
+        url: "https://api.wearerealitygames.com/heatmap2/search",
+        data: getSearchParams(categories),
+        success: function(data){
+          console.log(data)
+        }
+    });
+});
