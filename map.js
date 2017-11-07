@@ -8,6 +8,9 @@ map = new L.Map('map', { zoomControl:false });
 var url = 'https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibW1hc3RpIiwiYSI6ImNpb2U0eGJ6ZjAwMTl3Z2x4amJ1OGh3aTAifQ.SS26wQ8oypVbNlan2nguCg';
 var tiles = new L.TileLayer(url, {minZoom: 3, attribution: 'MapBox'});
 
+const categoriesNew = "http://docker05.srv.wearerealitygames.com:58080/categories";
+const markersNew = "http://docker05.srv.wearerealitygames.com:58080/search";
+const heatmapNew = "http://docker05.srv.wearerealitygames.com:58080/heatmap";
 
 map.addLayer(tiles);
 map.setView(new L.LatLng(35, -5), 3); //35, -5 to center the view
@@ -35,7 +38,8 @@ mergeHeatmap = function(searchResult) {
   var tpLen = Object.keys(searchResult).length
 
   Object.keys(searchResult).forEach(function(tp, index) {
-    heatmap = searchResult[tp]["heatmap"]
+
+    heatmap = searchResult[tp]["heatmap"];
     max = heatmap["max"];
     points = heatmap["points"];
     points.forEach(function(point) {
@@ -49,6 +53,7 @@ mergeHeatmap = function(searchResult) {
         merged[mKey].num = merged[mKey].num + 1;
       }
     });
+
   });
 
   data = Object.values(merged).filter(point => point.num == tpLen);
@@ -111,33 +116,41 @@ getCounter = function(category){
 
 showResult = function(searchResult) {
   var circleStroke = true;
+
   if(map.getZoom() > 10) {
     circleStroke = false;
     //cleaning markers
-    markers.forEach(marker => map.removeLayer(marker))
+    markers.forEach(marker => map.removeLayer(marker));
     markers = [];
+
     Object.keys(searchResult).forEach(function(tp) {
-      var items = searchResult[tp].items
+      var items = searchResult[tp].items;
+
       items.forEach(function(item) {
         //var marker = new L.marker([item.lat, item.lng]);
         if (tp == 'synagogues') var icoURI = 'https://daks2k3a4ib2z.cloudfront.net/59412c18231a855223f00c3a/59e9e78ba71c7d00019135b2_marker_synagogue.svg';
         else var icoURI = 'https://daks2k3a4ib2z.cloudfront.net/59412c18231a855223f00c3a/59e9e776e87a4d000109f64a_marker_church.svg';
+
         var myIcon = L.icon({
           iconUrl: icoURI,
           iconSize: [22, 22]
         });
+
         var marker = new L.marker([item.lat, item.lng], {icon: myIcon});
         marker.bindPopup(tp + ":\n<br>" + item.name);
         marker.addTo(map);
         markers.push(marker);
       });
     });
-  } else {
+  }
+
+  else {
     markers.forEach(marker => map.removeLayer(marker));
     markers = [];
     //merged = mergeHeatmap(searchResult);
     //heatmapLayer.setData(merged);
   };
+
   merged = mergeMajority(searchResult);
   circles.forEach(circle => map.removeLayer(circle));
   circles = [];
@@ -147,6 +160,7 @@ showResult = function(searchResult) {
     circles.push(circle);
   });
 }
+//END SHOW RESULTS
 
 updateMap = function() {
   var categories = getActiveCategories();
@@ -159,6 +173,15 @@ updateMap = function() {
       success: showResult
     });
   }
+}
+
+updateMap2 = function(url) {
+
+    $.getJSON({
+        url: url,
+        data: getSearchParams(categories),
+        success: showResult
+    });
 }
 
 clearMap = function() {
@@ -175,14 +198,19 @@ map.on('moveend', event => updateMap());
 
 $(document).ready(function(){
 
-  
-    $.getJSON({
-        url: "https://api.wearerealitygames.com/heatmap2/search",
-        data: getSearchParams(['churches']),
-        success: function(data){
-            console.log(data)
-        }
-    });
+    // $.getJSON({
+    //     url: "http://docker05.srv.wearerealitygames.com:58080/heatmap?categories=places.cafe",
+    //     data: getSearchParams(['churches']),
+    //     success: function(data){
+    //         console.log(data, "data")
+    //     }
+    // });
 
+    $.getJSON("http://docker05.srv.wearerealitygames.com:58080/heatmap?categories=places.cafe",function(data){
+        console.log(data, "DATA NEW");
+    })
 
+    $.getJSON("https://api.wearerealitygames.com/heatmap2/search",function(data){
+        console.log(data, "DATA OLD");
+    })
 })
