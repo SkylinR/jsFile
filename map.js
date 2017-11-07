@@ -169,21 +169,6 @@ clearMap = function() {
 }
 
 
-$('a').click(function() {
-  var category = this.href.split('#')[1];
-  var categories = getActiveCategories();
-
-  if($.inArray(category, categories) < 0) {
-    categories.push(category);
-  } else {
-    categories = categories.filter(c => c != category);
-  }
-
-  location.hash = '#' + categories.join();
-
-  return false;
-});
-
 window.onhashchange = updateMap;
 map.on('moveend', event => updateMap());
 //**MAP CODE ENDS HERE**//
