@@ -197,7 +197,7 @@ $( document ).ready(function() {
 
     $.getJSON({
         url: "https://api.wearerealitygames.com/heatmap2/search",
-        data: data,
+        data: getSearchParams(['churches']),
         success: function(data){
           console.log(data)
         }
