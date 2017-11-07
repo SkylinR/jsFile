@@ -172,3 +172,17 @@ clearMap = function() {
 window.onhashchange = updateMap;
 map.on('moveend', event => updateMap());
 //**MAP CODE ENDS HERE**//
+
+$(document).ready(function(){
+
+  
+    $.getJSON({
+        url: "https://api.wearerealitygames.com/heatmap2/search",
+        data: getSearchParams(['churches']),
+        success: function(data){
+            console.log(data)
+        }
+    });
+
+
+})
