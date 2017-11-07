@@ -164,7 +164,7 @@ updateMap = function() {
 test = function() {
   console.log("test");
   console.log(data);
-  console.log(getSearchParams(categories);
+  console.log(getSearchParams(categories));
 }
 
 clearMap = function() {
