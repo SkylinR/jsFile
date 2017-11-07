@@ -196,7 +196,7 @@ $( document ).ready(function() {
 
     $.getJSON({
         url: "https://api.wearerealitygames.com/heatmap2/search",
-        data: getSearchParams(categories),
+        data: data,
         success: function(data){
           console.log(data)
         }
